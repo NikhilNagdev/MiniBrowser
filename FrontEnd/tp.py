@@ -1,5 +1,12 @@
 import io
+
+
+import requests
 import base64
+
+from PIL import Image
+from PIL.ImageTk import PhotoImage
+
 try:
     # Python2
     import Tkinter as tk
@@ -21,11 +28,11 @@ y = 100
 # use width x height + x_offset + y_offset (no spaces!)
 
 # this GIF picture previously downloaded to tinypic.com
-image_url = "http://i46.tinypic.com/r9oh0j.gif"
+image_url = "https://images-na.ssl-images-amazon.com/images/I/71jos2ODTuL._RI_.jpg"
 image_byt = urlopen(image_url).read()
-image_b64 = base64.encodestring(image_byt)
-photo = tk.PhotoImage(data=image_b64)
-# create a white canvas
-tk.Label(mainframe, image=photo).grid(column=3, row=1, sticky=tk.W)
+p = Image.open(io.BytesIO(image_byt))
+photo = PhotoImage(p)
+l = tk.Label(mainframe, image=photo)
+l.grid(column=3, row=1, sticky=tk.W)
 tk.Label(mainframe, text="nikhjli").grid(column=3, row=1, sticky=tk.W)
 root.mainloop()
