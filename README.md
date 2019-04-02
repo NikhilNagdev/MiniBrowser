@@ -1,1 +1,1 @@
-# MiniBrowser
+# MiniImageBrowser
