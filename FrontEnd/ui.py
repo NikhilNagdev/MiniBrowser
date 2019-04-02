@@ -1,42 +1,30 @@
-from tkinter import *
-from tkinter import ttk
-import tkinter as tk
 
-def calculate():
-    try:
-        value = float(feet.get())
-        meters.set((0.3048 * value * 10000.0 + 0.5) / 10000.0)
-    except ValueError:
-        pass
+from tkinter import *
+
+from FrontEnd.test import BrowseImage
+
+def buttonEventHandler(self):
+    browe = BrowseImage(e1.get())
+    print(browe.getURL())
+
 
 
 root = Tk()
-root.title("Feet to Meters")
+root.title("Image browser")
+f = Frame(root, width=800, height=600)
+f.pack()
+e1 = Entry(f, font=('Arial', 18))
 
-mainframe = ttk.Frame(root, padding="3 3 12 12")
-mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
-root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
-
-feet = StringVar()
-meters = StringVar()
-
-feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
-feet_entry.grid(column=2, row=1, sticky=(W, E))
-
-ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
-ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
-
-ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
-ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
-# ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
-logo = tk.PhotoImage(file="https://images-na.ssl-images-amazon.com/images/I/71jos2ODTuL._RI_.jpg")
-ttk.Label(mainframe, image=logo).grid(column=3, row=2, sticky=W)
-
-
-for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
-
-feet_entry.focus()
-root.bind('<Return>', calculate)
-
+l1 = Label(f, text="Username: ", borderwidth=2, relief="solid", width=35, height=10, font=('Arial', 14))
+l2 = Label(f, text="Username: ", borderwidth=2, relief="solid", width=35, height=10, font=('Arial', 14))
+l3 = Label(f, text="Username: ", borderwidth=2, relief="solid", width=35, height=10, font=('Arial', 14))
+l4 = Label(f, text="Username: ", borderwidth=2, relief="solid", width=35, height=10, font=('Arial', 14))
+e1.place(x=0, y=5, width=690, height=25)
+l1.place(x=0, y=100)
+l2.place(x=400, y=100)
+l3.place(x=0, y=340)
+l4.place(x=400, y=340)
+b = Button(f, text="Search", width=12, height=1)
+b.place(x=700, y=5)
+b.bind('<Button>', buttonEventHandler)
 root.mainloop()
